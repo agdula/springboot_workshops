@@ -1,4 +1,4 @@
-FROM
+FROM quay.io/michal_dec/base_java:java8
 
 MAINTAINER Michal Dec <michaldec@gmail.com>
 

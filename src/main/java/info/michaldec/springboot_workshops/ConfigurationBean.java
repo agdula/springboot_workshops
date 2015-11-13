@@ -2,21 +2,21 @@ package info.michaldec.springboot_workshops;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by michaldec on 02/10/15.
  */
 @Component
-public class ConfigBean {
+public class ConfigurationBean {
 
     private  boolean isHealthy;
+    private boolean shouldLogVisit;
 
     @Autowired
-    public ConfigBean(@Value("${isHealthy}") boolean isHealthy, @Value("${customParam1}") String customParam1) {
+    public ConfigurationBean(@Value("${isHealthy}") boolean isHealthy, @Value("${shouldLogVisit}") boolean shouldLogVisit) {
         this.isHealthy = isHealthy;
+        this.shouldLogVisit = shouldLogVisit;
     }
 
     public boolean isHealthy() {
@@ -25,5 +25,13 @@ public class ConfigBean {
 
     public void setHealthy(boolean isHealthy) {
         this.isHealthy = isHealthy;
+    }
+
+    public boolean shouldLogVisit() {
+        return shouldLogVisit;
+    }
+
+    public void setShouldLogVisit(boolean shouldLogVisit) {
+        this.shouldLogVisit = shouldLogVisit;
     }
 }

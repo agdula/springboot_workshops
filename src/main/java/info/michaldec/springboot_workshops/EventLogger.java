@@ -23,11 +23,16 @@ public class EventLogger {
     @Autowired
     private VisitCounter visitCounter;
 
+    @Autowired
+    private ConfigurationBean configurationBean;
+
     @PostConstruct
     public void startLogger() {
         logger.scheduleAtFixedRate(() -> {
-            log.info(String.format(LOG_PATTERN, visitCounter.getCounter()));
-        }, 1, 1, TimeUnit.SECONDS);
+            if (configurationBean.shouldLogVisit()) {
+                log.info(String.format(LOG_PATTERN, visitCounter.getCounter()));
+            }
+        }, 1, 5, TimeUnit.SECONDS);
 
     }
 }

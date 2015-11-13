@@ -1,7 +1,6 @@
 package info.michaldec.springboot_workshops;
 
 import org.springframework.stereotype.Component;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**

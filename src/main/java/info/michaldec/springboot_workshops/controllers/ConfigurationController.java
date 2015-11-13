@@ -1,6 +1,6 @@
 package info.michaldec.springboot_workshops.controllers;
 
-import info.michaldec.springboot_workshops.ConfigBean;
+import info.michaldec.springboot_workshops.ConfigurationBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ConfigurationController {
 
     @Autowired
-    private ConfigBean configurableBean;
+    private ConfigurationBean configurableBean;
 
     @RequestMapping(value = "/healthy",method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
@@ -31,5 +31,19 @@ public class ConfigurationController {
     public String markUnhealthy() {
         configurableBean.setHealthy(false);
         return "Server marked unhealthy";
+    }
+
+    @RequestMapping(value = "/turnLogOn",method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
+    @ResponseBody
+    public String turnOnLog() {
+        configurableBean.setShouldLogVisit(true);
+        return "Log turned on...";
+    }
+
+    @RequestMapping(value = "/turnLogOff",method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
+    @ResponseBody
+    public String turnOffLog() {
+        configurableBean.setShouldLogVisit(false);
+        return "Log turned off...";
     }
 }
